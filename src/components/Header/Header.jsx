@@ -9,6 +9,7 @@ import {
 import { googleLogout } from "@react-oauth/google";
 import { AuthDialog } from "../AuthDialog/AuthDialog";
 import { useGoogleAuth } from "@/services/Auth";
+import { FaUserAlt } from "react-icons/fa"; // Import the icon
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +28,8 @@ export default function Header() {
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 
-	const [users, setUsers] = useState(() =>
-		JSON.parse(localStorage.getItem("user"))
-	);
+	const initialUser = JSON.parse(localStorage.getItem("user"));
+	const [users, setUsers] = useState(initialUser);
 
 	useEffect(() => {
 		const handleResize = () => setIsSmallScreen(window.innerWidth < 1024);
@@ -42,8 +42,9 @@ export default function Header() {
 
 	useEffect(() => {
 		// Update users state whenever localStorage changes
-		setUsers(JSON.parse(localStorage.getItem("user")));
-	}, [localStorage.getItem("user")]);
+		const storedUser = JSON.parse(localStorage.getItem("user"));
+		setUsers(storedUser);
+	}, [initialUser]);
 
 	useEffect(() => {
 		if (redirectAfterLogin && users) {
@@ -134,11 +135,15 @@ export default function Header() {
 									<li>
 										<Popover>
 											<PopoverTrigger>
-												<img
-													src={users.picture}
-													alt="User"
-													className="h-8 w-8 rounded-full"
-												/>
+												{users.picture ? (
+													<img
+														src={users.picture}
+														alt="User"
+														className="h-8 w-8 rounded-full"
+													/>
+												) : (
+													<FaUserAlt className="h-8 w-8 rounded-full" />
+												)}
 											</PopoverTrigger>
 											<PopoverContent
 												className="w-17"
@@ -155,7 +160,6 @@ export default function Header() {
 														googleLogout();
 														localStorage.clear();
 														setUsers(null); // Ensure users state is updated
-														// window.location.reload();
 													}}
 													className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
 												>
