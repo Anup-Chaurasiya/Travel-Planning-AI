@@ -9,7 +9,8 @@ import {
 import { googleLogout } from "@react-oauth/google";
 import { AuthDialog } from "../AuthDialog/AuthDialog";
 import { useGoogleAuth } from "@/services/Auth";
-import { FaUserAlt } from "react-icons/fa"; // Import the icon
+import { FaUserAlt } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,7 @@ export default function Header() {
 	}, [users, redirectAfterLogin, navigate]);
 
 	return (
-		<header className="w-full border-b-2 font-mono text-lg border-neutral-600 shadow top-0 z-50">
+		<header className="w-full border-b-2 font-serif sm:text-sm md:text-xl border-neutral-600 shadow top-0 z-50">
 			<nav className="container px-2 lg:px-6 py-2">
 				<div className="flex flex-wrap justify-between items-center mx-auto">
 					<Link to="/" className="flex items-center">
@@ -92,7 +93,7 @@ export default function Header() {
 							isOpen ? "block" : "hidden"
 						} w-full lg:flex lg:w-auto lg:items-center`}
 					>
-						<ul className="flex flex-col mt-1 font-medium lg:flex-row lg:space-x-8 lg:mt-0 lg:ml-auto text-right">
+						<ul className="flex flex-col mt-1 font-medium lg:flex-row lg:space-x-8 lg:mt-0 lg:ml-auto text-right leading-loose">
 							{users ? (
 								<>
 									<li>
@@ -101,7 +102,7 @@ export default function Header() {
 											className={({ isActive }) =>
 												`block pr-2 pl-2 duration-200 ${
 													isActive
-														? "text-green-500 font-bold"
+														? "text-customGreen font-bold dark:text-customBlue"
 														: "text-gray-500"
 												}`
 											}
@@ -115,12 +116,15 @@ export default function Header() {
 											className={({ isActive }) =>
 												`block pr-2 pl-2 duration-200 ${
 													isActive
-														? "text-green-500 font-bold"
+														? "text-customGreen font-bold dark:text-customBlue"
 														: "text-gray-500"
 												}`
 											}
 										>
-											New Trip
+											Create New{" "}
+											<span className="text-2xl font-bold ">
+												+
+											</span>
 										</NavLink>
 									</li>
 									<li>

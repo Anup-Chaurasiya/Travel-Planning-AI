@@ -49,7 +49,7 @@ export const InfoSection = ({ trip }) => {
 			<div className="container">
 				<Carousel
 					plugins={[plugin.current]}
-					className="w-full h-full "
+					className="w-full h-full"
 					onMouseEnter={plugin.current.stop}
 					onMouseLeave={plugin.current.reset}
 				>
@@ -64,7 +64,7 @@ export const InfoSection = ({ trip }) => {
 													? photoUrl
 													: "/trip.jpg"
 											}
-											className=" h-52 md:h-[499px] object-fill w-full rounded-2xl"
+											className="h-48 md:h-[499px] object-fill w-full rounded-2xl"
 										/>
 									</CardContent>
 								</Card>
@@ -76,18 +76,18 @@ export const InfoSection = ({ trip }) => {
 				</Carousel>
 			</div>
 			<div>
-				<h2 className="font-bold text-2xl md:text-4xl mt-6 md:mt-9 lg:mt-14 ">
+				<h2 className="font-bold text-2xl md:text-4xl mt-2 md:mt-9 lg:mt-14 ">
 					🧭 {trip?.userSelection?.location?.label} 🧭
 				</h2>
-				<div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-xs md:text-sm lg:text-base items-center md:flex-row gap-3 lg:gap-5 mt-5 md:mt-9 lg:mt-12 text-center">
+				<div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-sm md:text-sm lg:text-base items-center md:flex-row gap-3 lg:gap-5 mt-5 md:mt-9 lg:mt-12 text-center">
 					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
-						{trip?.userSelection?.noOfDays} Day
+						📅 {trip?.userSelection?.noOfDays} Day 📅
 					</h2>
 					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
-						{trip?.userSelection?.budget} budget
+						💰 {trip?.userSelection?.budget} budget 💰
 					</h2>
 					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
-						Traveler: {trip?.userSelection?.people}
+						👥 Traveler: {trip?.userSelection?.people} 👥
 					</h2>
 				</div>
 			</div>

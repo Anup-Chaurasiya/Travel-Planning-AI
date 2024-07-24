@@ -30,7 +30,7 @@ export const ViewTrip = () => {
 	};
 
 	return (
-		<div className="p-10 container ">
+		<div className="container p-1 ">
 			<InfoSection trip={trip} />
 			<Hotels trip={trip} />
 			<Itinerary trip={trip} />
