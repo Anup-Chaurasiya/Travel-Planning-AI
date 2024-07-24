@@ -12,12 +12,15 @@ import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import { HomePage } from "./components/HomePage/HomePage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ViewTrip } from "./viewTrip/ViewTrip";
+import { MyTrips } from "./components/MyTrips/MyTrips";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />}>
 			<Route path="" element={<LandingPage />} />
 			<Route path="/create-trip" element={<HomePage />} />
+			<Route path="/my-trips" element={<MyTrips />} />
+
 			<Route path="/view-trip/:tripId" element={<ViewTrip />} />
 		</Route>
 	)
