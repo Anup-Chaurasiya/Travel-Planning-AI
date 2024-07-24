@@ -59,7 +59,11 @@ export const InfoSection = ({ trip }) => {
 								<Card>
 									<CardContent className="p-1 rounded-2xl">
 										<img
-											src={photoUrl}
+											src={
+												photoUrl
+													? photoUrl
+													: "/trip.jpg"
+											}
 											className=" h-52 md:h-[499px] object-fill w-full rounded-2xl"
 										/>
 									</CardContent>
