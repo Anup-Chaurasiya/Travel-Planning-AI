@@ -173,7 +173,7 @@ export default function Header() {
 								<li>
 									<NavLink
 										onClick={() => setOpenDialog(true)}
-										className="block pr-2 pl-2 duration-200 text-gray-500"
+										className="block pr-2 pl-2 pb-2 duration-200 text-gray-500"
 									>
 										Login
 									</NavLink>
@@ -181,6 +181,7 @@ export default function Header() {
 										open={openDialog}
 										loading={loading}
 										onLogin={login}
+										onClose={() => setOpenDialog(false)}
 									/>
 								</li>
 							)}
