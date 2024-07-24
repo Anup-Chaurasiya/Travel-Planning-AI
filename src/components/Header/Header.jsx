@@ -93,21 +93,6 @@ export default function Header() {
 						} w-full lg:flex lg:w-auto lg:items-center`}
 					>
 						<ul className="flex flex-col mt-1 font-medium lg:flex-row lg:space-x-8 lg:mt-0 lg:ml-auto text-right">
-							<li>
-								<NavLink
-									to="/about"
-									className={({ isActive }) =>
-										`block pr-2 pl-2 duration-200 ${
-											isActive
-												? "text-green-500 font-bold"
-												: "text-gray-500"
-										}`
-									}
-								>
-									About
-								</NavLink>
-							</li>
-
 							{users ? (
 								<>
 									<li>

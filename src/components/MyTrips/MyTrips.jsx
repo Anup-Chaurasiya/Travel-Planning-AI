@@ -37,8 +37,8 @@ export const MyTrips = () => {
 	}, [navigate]);
 
 	return (
-		<div className="container xl:px-40 font-mono">
-			<h1 className="font-bold text-lg sm:text-lg md:text-2xl mt-6 md:mt-10 lg:mt-16 mb-8 md:mb-20">
+		<div className="container font-mono">
+			<h1 className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-6 md:mt-10 lg:mt-16 mb-4 md:mb-20">
 				My Trips 🏕️🌴
 			</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 text-justify gap-3 md:gap-6 xl:gap-6">
