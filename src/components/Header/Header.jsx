@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ModeToggle } from "../Theme/ModeToggle";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
 	Popover,
 	PopoverContent,
@@ -28,8 +28,14 @@ export default function Header() {
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 
-	const initialUser = JSON.parse(localStorage.getItem("user"));
-	const [users, setUsers] = useState(initialUser);
+	const [users, setUsers] = useState(() => {
+		return JSON.parse(localStorage.getItem("user"));
+	});
+
+	const updateUserAndRedirect = useCallback(() => {
+		const storedUser = JSON.parse(localStorage.getItem("user"));
+		setUsers(storedUser);
+	}, []);
 
 	useEffect(() => {
 		const handleResize = () => setIsSmallScreen(window.innerWidth < 1024);
@@ -41,16 +47,16 @@ export default function Header() {
 	}, []);
 
 	useEffect(() => {
-		// Update users state whenever localStorage changes
-		const storedUser = JSON.parse(localStorage.getItem("user"));
-		setUsers(storedUser);
-	}, [initialUser]);
+		if (redirectAfterLogin) {
+			updateUserAndRedirect();
+		}
+	}, [redirectAfterLogin, updateUserAndRedirect]);
 
 	useEffect(() => {
-		if (redirectAfterLogin && users) {
+		if (users && redirectAfterLogin) {
 			navigate("/my-trips");
 		}
-	}, [redirectAfterLogin, users, navigate]);
+	}, [users, redirectAfterLogin, navigate]);
 
 	return (
 		<header className="w-full border-b-2 font-mono text-lg border-neutral-600 shadow top-0 z-50">
