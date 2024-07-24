@@ -36,7 +36,7 @@ function MyTripsCard({ trip }) {
 
 	return (
 		<Link to={"/view-trip/" + trip?.id}>
-			<div className="text-sm lg:text-base hover:scale-105 transition-all border-2 rounded-2xl px-1 cursor-pointer">
+			<div className="font-mono xs:text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl hover:scale-105 transition-all border-2 rounded-2xl px-1 cursor-pointer">
 				<img
 					className="h-56 w-full rounded-2xl p-2"
 					src={photoUrl ? photoUrl : "/trip.jpg"}
@@ -44,16 +44,16 @@ function MyTripsCard({ trip }) {
 				{/* Added alt attribute for better accessibility */}
 				<div className="my-6 mx-2 ">
 					<h2 className="font-semibold text-sm md:text-lg mt-2 text-left">
-						🏛️ {trip?.userSelection?.location?.label}
+						📍 {trip?.userSelection?.location?.label}
 					</h2>
 					<h2 className="font-semibold text-sm md:text-lg mt-2 text-left">
-						🏛️ No of Days: {trip?.userSelection?.noOfDays}
+						📅 No of Days: {trip?.userSelection?.noOfDays}
 					</h2>
 					<h2 className="font-semibold text-sm md:text-lg mt-2 text-left">
-						🏛️ Budget: {trip?.userSelection?.budget}
+						💰 Budget: {trip?.userSelection?.budget}
 					</h2>
 					<h2 className="font-semibold text-sm md:text-lg mt-2 text-left">
-						🏛️ Traveler: {trip?.userSelection?.people}
+						👥 Traveler: {trip?.userSelection?.people}
 					</h2>
 				</div>
 			</div>
