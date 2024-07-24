@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/services/fireBaseConfig";
 import MyTripsCard from "./MyTripsCard";
+import { Card } from "../ui/card";
 
 export const MyTrips = () => {
 	const navigate = useNavigate();
@@ -37,22 +38,24 @@ export const MyTrips = () => {
 	}, [navigate]);
 
 	return (
-		<div className="container font-mono">
-			<h1 className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-6 md:mt-10 lg:mt-16 mb-4 md:mb-20">
-				My Trips 🏕️🌴
-			</h1>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 text-justify gap-3 md:gap-6 xl:gap-6">
-				{userTrips?.length > 0
-					? userTrips.map((trip, index) => (
-							<MyTripsCard key={index} trip={trip} /> // Properly render each card with a key
-					  ))
-					: [1, 2, 3, 4, 5].map((item, index) => (
-							<div
-								key={index}
-								className="h-56 w-full bg-slate-300 dark:bg-slate-800 animate-pulse rounded-2xl p-2"
-							></div>
-					  ))}
-			</div>
+		<div className="container font-serif ">
+			<Card className="mt-5 border-x-2 p-2">
+				<h1 className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-6 md:mt-10 lg:mt-10">
+					My Trips 🏕️🌴
+				</h1>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 text-justify gap-3 md:gap-6 xl:gap-6">
+					{userTrips?.length > 0
+						? userTrips.map((trip, index) => (
+								<MyTripsCard key={index} trip={trip} /> // Properly render each card with a key
+						  ))
+						: [1, 2, 3, 4, 5].map((item, index) => (
+								<div
+									key={index}
+									className="h-56 w-full bg-slate-300 dark:bg-slate-800 animate-pulse rounded-2xl p-2"
+								></div>
+						  ))}
+				</div>
+			</Card>
 		</div>
 	);
 };

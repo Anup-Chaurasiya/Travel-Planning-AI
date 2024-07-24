@@ -11,7 +11,7 @@ export const Hotels = ({ trip }) => {
 				{trip?.tripData?.hotels?.map((hotel, index) => (
 					<div
 						key={index}
-						className="text-sm lg:text-base hover:scale-105 transition-all border-2 rounded-lg px-2 cursor-pointer"
+						className="text-sm lg:text-base hover:scale-105 transition-all border-2 border-customGreen dark:border-customBlue rounded-lg px-2 cursor-pointer"
 					>
 						<Link
 							to={

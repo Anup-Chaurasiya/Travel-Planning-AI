@@ -134,8 +134,8 @@ export const HomePage = () => {
 
 	return (
 		<>
-			<div className="w-full overflow-hidden px-3 md:px-14 lg:px-14 xl:px-40  font-mono">
-				<Card className="mt-12">
+			<div className="w-full overflow-hidden px-3 md:px-14 lg:px-14 xl:px-40 font-serif ">
+				<Card className="mt-6 border-y-4 p-6">
 					<CardHeader>
 						<CardTitle className="pt-5  text-left text-lg md:text-2xl lg:text-3xl font-bold tracking-wider md:tracking-widest">
 							Please share your travel preferences with us🏕️🌴
@@ -148,14 +148,18 @@ export const HomePage = () => {
 					</CardHeader>
 					<CardContent>
 						<form>
-							<div className="grid w-full items-center ">
+							<div className="grid w-full items-center">
 								<div className="flex flex-col space-y-10">
 									<div className="space-y-2">
-										<Label htmlFor="name">
+										<Label
+											htmlFor="name"
+											className="text-base md:text-lg"
+										>
 											What is your preferred destination?
 										</Label>
-										<div className="dark:text-slate-800">
+										<div className="dark:text-slate-800 border-2 border-customGreen dark:border-customBlue">
 											<GooglePlacesAutocomplete
+												className=""
 												apiKey={
 													import.meta.env
 														.VITE_GOOGLE_PLACE_APIKEY
@@ -174,7 +178,10 @@ export const HomePage = () => {
 										</div>
 									</div>
 									<div>
-										<Label htmlFor="days">
+										<Label
+											htmlFor="days"
+											className="text-base md:text-lg"
+										>
 											How many days do you plan to spend
 											on your trip?
 										</Label>
@@ -190,13 +197,17 @@ export const HomePage = () => {
 												)
 											}
 											onKeyDown={handleKeyDown}
+											className="border-2 border-customGreen dark:border-customBlue bg-white"
 										/>
 									</div>
 									<div>
-										<Label htmlFor="budget">
+										<Label
+											htmlFor="budget"
+											className="text-base md:text-lg"
+										>
 											What's your spending limit?
 										</Label>
-										<div className="grid grid-cols-1 md:grid-cols-3 mt-5 cursor-pointer text-sm md:text-base lg:text-base items-center text-center">
+										<div className="grid grid-cols-1 md:grid-cols-3 mt-5  cursor-pointer text-sm md:text-base lg:text-base items-center text-center">
 											{SelectBudgetOptions.map(
 												(item, index) => (
 													<div
@@ -207,10 +218,10 @@ export const HomePage = () => {
 																item.title
 															)
 														}
-														className={`p-1 m-1 md:p-4 md:m-3 border-2 rounded-lg hover:shadow-md shadow-slate-800 dark:hover:shadow-blue-600 ${
+														className={`p-1 m-1 md:p-2 md:m-1 border-4 rounded-lg hover:shadow-lg border-customGreen dark:border-customBlue hover:shadow-customGreen dark:hover:shadow-customBlue ${
 															formData?.budget ===
 																item.title &&
-															`shadow-lg border-blue-600`
+															`shadow-xl border-customGreen dark:border-customBlue`
 														}`}
 													>
 														<h2 className="font-bold text-md">
@@ -228,7 +239,10 @@ export const HomePage = () => {
 										</div>
 									</div>
 									<div>
-										<Label htmlFor="noOfPeople">
+										<Label
+											htmlFor="noOfPeople"
+											className="text-base md:text-lg"
+										>
 											Who are you planning to travel with
 											on your next adventure?
 										</Label>
@@ -243,10 +257,10 @@ export const HomePage = () => {
 																item.people
 															)
 														}
-														className={`p-1 m-1 md:p-4 md:m-3 border-2 rounded-lg hover:shadow-lg shadow-slate-800 dark:hover:shadow-blue-600 ${
+														className={`p-1 m-1 md:p-4 md:m-3 border-4 rounded-lg border-customGreen dark:border-customBlue hover:shadow-lg hover:shadow-customGreen dark:hover:shadow-customBlue ${
 															formData?.people ===
 																item.people &&
-															`shadow-lg border-blue-600`
+															`shadow-xl border-customGreen dark:border-customBlue`
 														}`}
 													>
 														<h2 className="font-bold">

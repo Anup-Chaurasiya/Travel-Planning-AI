@@ -17,7 +17,7 @@ export const Itinerary = ({ trip }) => {
 							{day.Activities?.map((activity, activityIndex) => (
 								<div
 									key={activityIndex}
-									className="mt-2 text-sm lg:text-base hover:scale-105 transition-all border-2 rounded-lg px-2 cursor-pointer"
+									className="mt-2 text-sm lg:text-base hover:scale-105 transition-all border-2 border-customGreen dark:border-customBlue rounded-lg px-2 cursor-pointer"
 								>
 									<Link
 										to={
