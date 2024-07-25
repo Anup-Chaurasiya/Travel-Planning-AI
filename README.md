@@ -1,8 +1,17 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# AI-Powered Trip Recommendation Platform
 
-Currently, two official plugins are available:
+- Developed a Reactjs based web application to provide personalized trip recommendations.
+- Integrated Google Gemini's Generative AI API for intelligent trip planning and suggestions.
+- Utilized Google Places API to fetch detailed location information and imagery.
+- Implemented seamless user authentication and authorization using Google OAuth.
+- Enhanced user interface and experience with Tailwind CSS and Shadcn.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Website Demo - Web View
+https://github.com/user-attachments/assets/55fbfa25-659d-409f-8973-fc2d29ee9409
+
+
+Website Demo - Mobile View
+https://github.com/user-attachments/assets/b0419bc0-44a7-44f9-a275-5719b0f10cd8
+
