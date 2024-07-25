@@ -45,7 +45,8 @@ export const InfoSection = ({ trip }) => {
 	const plugin = useRef(Autoplay({ delay: 2500, stopOnInteraction: false }));
 
 	return (
-		<div>
+		<Card className="my-4 border-x-2 p-5">
+			<></>
 			<div className="container">
 				<Carousel
 					plugins={[plugin.current]}
@@ -91,6 +92,6 @@ export const InfoSection = ({ trip }) => {
 					</h2>
 				</div>
 			</div>
-		</div>
+		</Card>
 	);
 };

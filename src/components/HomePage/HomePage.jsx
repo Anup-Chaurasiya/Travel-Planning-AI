@@ -31,12 +31,17 @@ import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/services/fireBaseConfig";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AuthDialog } from "../AuthDialog/AuthDialog";
+import { useGoogleAuth } from "@/services/Auth";
 
 export const HomePage = () => {
 	const [place, setPlace] = useState();
 	const [formData, setFormData] = useState([]);
 	const [openDialog, setOpenDialog] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const login = useGoogleAuth(() => {
+		setOpenDialog(false);
+	});
 
 	const handleInputChanges = (name, value) => {
 		setFormData({
@@ -44,11 +49,6 @@ export const HomePage = () => {
 			[name]: value,
 		});
 	};
-
-	const login = useGoogleLogin({
-		onSuccess: (codeResp) => GetUserProfile(codeResp),
-		onError: (error) => console.log(error),
-	});
 
 	useEffect(() => {}, [formData]);
 
@@ -105,25 +105,6 @@ export const HomePage = () => {
 		});
 		setLoading(false);
 		navigate("/view-trip/" + docId);
-	};
-
-	const GetUserProfile = (tokenInfo) => {
-		axios
-			.get(
-				`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
-				{
-					headers: {
-						Authorization: `Bearer ${tokenInfo?.access_token}`,
-						Accept: `Application/json`,
-					},
-				}
-			)
-			.then((resp) => {
-				console.log(resp);
-				localStorage.setItem("user", JSON.stringify(resp.data));
-				setOpenDialog(false);
-				onGenerateTrip();
-			});
 	};
 
 	const handleKeyDown = (event) => {
@@ -197,7 +178,7 @@ export const HomePage = () => {
 												)
 											}
 											onKeyDown={handleKeyDown}
-											className="border-2 border-customGreen dark:border-customBlue bg-white"
+											className="border-2 border-customGreen dark:border-customBlue bg-white text-slate-800 "
 										/>
 									</div>
 									<div>
@@ -207,7 +188,7 @@ export const HomePage = () => {
 										>
 											What's your spending limit?
 										</Label>
-										<div className="grid grid-cols-1 md:grid-cols-3 mt-5  cursor-pointer text-sm md:text-base lg:text-base items-center text-center">
+										<div className="grid grid-cols-1 md:grid-cols-3 mt-5 cursor-pointer text-sm md:text-base lg:text-base items-center text-center">
 											{SelectBudgetOptions.map(
 												(item, index) => (
 													<div
@@ -218,10 +199,10 @@ export const HomePage = () => {
 																item.title
 															)
 														}
-														className={`p-1 m-1 md:p-2 md:m-1 border-4 rounded-lg hover:shadow-lg border-customGreen dark:border-customBlue hover:shadow-customGreen dark:hover:shadow-customBlue ${
+														className={`p-1 m-1 md:p-2 md:m-1 border-2 rounded-lg mb-3 hover:shadow-lg border-customGreen dark:border-customBlue hover:shadow-customGreen dark:hover:shadow-customBlue ${
 															formData?.budget ===
 																item.title &&
-															`shadow-xl border-customGreen dark:border-customBlue`
+															`shadow-lg border-2 shadow-customGreen dark:shadow-customBlue`
 														}`}
 													>
 														<h2 className="font-bold text-md">
@@ -257,10 +238,10 @@ export const HomePage = () => {
 																item.people
 															)
 														}
-														className={`p-1 m-1 md:p-4 md:m-3 border-4 rounded-lg border-customGreen dark:border-customBlue hover:shadow-lg hover:shadow-customGreen dark:hover:shadow-customBlue ${
+														className={`p-1 m-1 md:p-4 md:m-3 border-2 mb-2 rounded-lg border-customGreen dark:border-customBlue hover:shadow-lg hover:shadow-customGreen dark:hover:shadow-customBlue ${
 															formData?.people ===
 																item.people &&
-															`shadow-xl border-customGreen dark:border-customBlue`
+															`shadow-lg border-2 shadow-customGreen dark:shadow-customBlue`
 														}`}
 													>
 														<h2 className="font-bold">
@@ -297,33 +278,12 @@ export const HomePage = () => {
 				</Card>
 			</div>
 
-			<Dialog open={openDialog}>
-				<DialogContent>
-					<DialogHeader>
-						<DialogDescription>
-							<img
-								className="w-44 sm:w-52 md:w-64 lg:w-72 xl:w-80 rounded-lg"
-								src="/travelMate.png"
-							/>
-							<h1 className="mx-auto mt-2 md:mt-4 text-left dark:text-green-400 text-green-600 font-semibold text-base md:text-2xl">
-								Sign In with Google
-							</h1>
-							<p className="text-slate-600 dark:text-slate-400 text-[0.6rem] sm:text-[0.7rem] md:text-base ">
-								Sign in to the App with Google authentication
-								securely
-							</p>
-							<Button
-								disabled={loading}
-								onClick={login}
-								className="w-full mt-5 gap-2 items-center text-base"
-							>
-								<FcGoogle className="h-7 w-7 " /> Sign in with
-								Google
-							</Button>
-						</DialogDescription>
-					</DialogHeader>
-				</DialogContent>
-			</Dialog>
+			<AuthDialog
+				open={openDialog}
+				loading={loading}
+				onLogin={login}
+				onClose={() => setOpenDialog(false)}
+			/>
 		</>
 	);
 };
