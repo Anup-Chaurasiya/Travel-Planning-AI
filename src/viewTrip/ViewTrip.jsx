@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { InfoSection } from "../components/Trip/InfoSection";
 import { Hotels } from "../components/Trip/Hotels";
 import { Itinerary } from "../components/Trip/Itinerary";
+import { Card } from "@/components/ui/card";
 
 export const ViewTrip = () => {
 	const { tripId } = useParams();
@@ -30,10 +31,10 @@ export const ViewTrip = () => {
 	};
 
 	return (
-		<div className="container p-1 ">
+		<Card className="container my-4 border-x-2 p-5">
 			<InfoSection trip={trip} />
 			<Hotels trip={trip} />
 			<Itinerary trip={trip} />
-		</div>
+		</Card>
 	);
 };

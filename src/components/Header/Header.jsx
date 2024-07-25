@@ -10,23 +10,24 @@ import { googleLogout } from "@react-oauth/google";
 import { AuthDialog } from "../AuthDialog/AuthDialog";
 import { useGoogleAuth } from "@/services/Auth";
 import { FaUserAlt } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isSmallScreen, setIsSmallScreen] = useState(
 		window.innerWidth < 1024
 	);
+
+	//Authenticatioon Related
 	const [openDialog, setOpenDialog] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [redirectAfterLogin, setRedirectAfterLogin] = useState(false);
-
-	const navigate = useNavigate();
 	const login = useGoogleAuth(() => {
 		setOpenDialog(false);
 		setRedirectAfterLogin(true);
 	});
+	const navigate = useNavigate();
 
+	//Theme Change
 	const toggleMenu = () => setIsOpen(!isOpen);
 
 	const [users, setUsers] = useState(() => {
@@ -134,7 +135,7 @@ export default function Header() {
 													<img
 														src={users.picture}
 														alt="User"
-														className="h-8 w-8 rounded-full"
+														className="h-12 w-full rounded-full"
 													/>
 												) : (
 													<FaUserAlt className="h-8 w-8 rounded-full" />
