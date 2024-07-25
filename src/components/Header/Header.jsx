@@ -1,43 +1,23 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ModeToggle } from "../Theme/ModeToggle";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { googleLogout } from "@react-oauth/google";
-import { AuthDialog } from "../AuthDialog/AuthDialog";
-import { useGoogleAuth } from "@/services/Auth";
 import { FaUserAlt } from "react-icons/fa";
+import { useAuth } from "@/Context/AuthContext";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isSmallScreen, setIsSmallScreen] = useState(
 		window.innerWidth < 1024
 	);
+	const { user, setUser } = useAuth();
 
-	//Authenticatioon Related
-	const [openDialog, setOpenDialog] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const [redirectAfterLogin, setRedirectAfterLogin] = useState(false);
-	const login = useGoogleAuth(() => {
-		setOpenDialog(false);
-		setRedirectAfterLogin(true);
-	});
-	const navigate = useNavigate();
-
-	//Theme Change
 	const toggleMenu = () => setIsOpen(!isOpen);
-
-	const [users, setUsers] = useState(() => {
-		return JSON.parse(localStorage.getItem("user"));
-	});
-
-	const updateUserAndRedirect = useCallback(() => {
-		const storedUser = JSON.parse(localStorage.getItem("user"));
-		setUsers(storedUser);
-	}, []);
 
 	useEffect(() => {
 		const handleResize = () => setIsSmallScreen(window.innerWidth < 1024);
@@ -47,18 +27,6 @@ export default function Header() {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-
-	useEffect(() => {
-		if (redirectAfterLogin) {
-			updateUserAndRedirect();
-		}
-	}, [redirectAfterLogin, updateUserAndRedirect]);
-
-	useEffect(() => {
-		if (users && redirectAfterLogin) {
-			navigate("/my-trips");
-		}
-	}, [users, redirectAfterLogin, navigate]);
 
 	return (
 		<header className="w-full border-b-2 font-serif sm:text-sm md:text-xl border-neutral-600 shadow top-0 z-50">
@@ -95,7 +63,7 @@ export default function Header() {
 						} w-full lg:flex lg:w-auto lg:items-center`}
 					>
 						<ul className="flex flex-col mt-1 font-medium lg:flex-row lg:space-x-8 lg:mt-0 lg:ml-auto text-right leading-loose">
-							{users ? (
+							{user ? (
 								<>
 									<li>
 										<NavLink
@@ -131,9 +99,9 @@ export default function Header() {
 									<li>
 										<Popover>
 											<PopoverTrigger>
-												{users.picture ? (
+												{user.picture ? (
 													<img
-														src={users.picture}
+														src={user.picture}
 														alt="User"
 														className="h-12 w-full rounded-full"
 													/>
@@ -154,8 +122,7 @@ export default function Header() {
 													to="/"
 													onClick={() => {
 														googleLogout();
-														localStorage.clear();
-														setUsers(null); // Ensure users state is updated
+														setUser(null);
 													}}
 													className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
 												>
@@ -165,22 +132,7 @@ export default function Header() {
 										</Popover>
 									</li>
 								</>
-							) : (
-								<li>
-									<NavLink
-										onClick={() => setOpenDialog(true)}
-										className="block pr-2 pl-2 pb-2 duration-200 text-gray-500"
-									>
-										Login
-									</NavLink>
-									<AuthDialog
-										open={openDialog}
-										loading={loading}
-										onLogin={login}
-										onClose={() => setOpenDialog(false)}
-									/>
-								</li>
-							)}
+							) : null}
 							<li className="block -mt-1.5 -pr-1 duration-200">
 								<ModeToggle />
 							</li>
