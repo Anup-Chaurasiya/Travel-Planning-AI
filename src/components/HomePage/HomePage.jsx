@@ -19,29 +19,15 @@ import {
 	SelectBudgetOptions,
 	SelectTravelerList,
 } from "@/constants/options";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-} from "@/components/ui/dialog";
-import { FcGoogle } from "react-icons/fc";
-import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/services/fireBaseConfig";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { AuthDialog } from "../AuthDialog/AuthDialog";
-import { useGoogleAuth } from "@/services/Auth";
 
 export const HomePage = () => {
 	const [place, setPlace] = useState();
 	const [formData, setFormData] = useState([]);
 	const [openDialog, setOpenDialog] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const login = useGoogleAuth(() => {
-		setOpenDialog(false);
-	});
 
 	const handleInputChanges = (name, value) => {
 		setFormData({
@@ -140,7 +126,6 @@ export const HomePage = () => {
 										</Label>
 										<div className="dark:text-slate-800 border-2 border-customGreen dark:border-customBlue">
 											<GooglePlacesAutocomplete
-												className=""
 												apiKey={
 													import.meta.env
 														.VITE_GOOGLE_PLACE_APIKEY
@@ -277,13 +262,6 @@ export const HomePage = () => {
 					</CardFooter>
 				</Card>
 			</div>
-
-			<AuthDialog
-				open={openDialog}
-				loading={loading}
-				onLogin={login}
-				onClose={() => setOpenDialog(false)}
-			/>
 		</>
 	);
 };
