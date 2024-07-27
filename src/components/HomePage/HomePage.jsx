@@ -124,7 +124,7 @@ export const HomePage = () => {
 										>
 											What is your preferred destination?
 										</Label>
-										<div className="dark:text-slate-800 border-2 border-customGreen dark:border-customBlue">
+										<div className="dark:text-slate-800 border-2 dark:border-customGreen border-blue-700">
 											<GooglePlacesAutocomplete
 												apiKey={
 													import.meta.env
@@ -154,7 +154,7 @@ export const HomePage = () => {
 										<Input
 											id="days"
 											type="number"
-											placeholder="EX. 3"
+											placeholder="ex. 3"
 											min="0"
 											onChange={(e) =>
 												handleInputChanges(
@@ -163,7 +163,7 @@ export const HomePage = () => {
 												)
 											}
 											onKeyDown={handleKeyDown}
-											className="border-2 border-customGreen dark:border-customBlue bg-white text-slate-800 "
+											className="border-2 dark:border-customGreen border-blue-700 bg-white text-slate-800 "
 										/>
 									</div>
 									<div>
@@ -184,10 +184,10 @@ export const HomePage = () => {
 																item.title
 															)
 														}
-														className={`p-1 m-1 md:p-2 md:m-1 border-2 rounded-lg mb-3 hover:shadow-lg border-customGreen dark:border-customBlue hover:shadow-customGreen dark:hover:shadow-customBlue ${
+														className={`p-1 m-1 md:p-2 md:m-1 border-2 rounded-lg mb-3 hover:shadow-lg dark:border-customGreen border-blue-700 dark:hover:shadow-customGreen hover:shadow-blue-700 ${
 															formData?.budget ===
 																item.title &&
-															`shadow-lg border-2 shadow-customGreen dark:shadow-customBlue`
+															`shadow-lg border-2 dark:shadow-customGreen shadow-blue-700`
 														}`}
 													>
 														<h2 className="font-bold text-md">
@@ -223,10 +223,10 @@ export const HomePage = () => {
 																item.people
 															)
 														}
-														className={`p-1 m-1 md:p-4 md:m-3 border-2 mb-2 rounded-lg border-customGreen dark:border-customBlue hover:shadow-lg hover:shadow-customGreen dark:hover:shadow-customBlue ${
+														className={`p-1 m-1 md:p-4 md:m-3 border-2 mb-2 rounded-lg dark:border-customGreen border-blue-700 hover:shadow-lg dark:hover:shadow-customGreen hover:shadow-blue-700  ${
 															formData?.people ===
 																item.people &&
-															`shadow-lg border-2 shadow-customGreen dark:shadow-customBlue`
+															`shadow-lg border-2 dark:shadow-customGreen shadow-blue-700`
 														}`}
 													>
 														<h2 className="font-bold">

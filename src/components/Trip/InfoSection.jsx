@@ -77,17 +77,17 @@ export const InfoSection = ({ trip }) => {
 				</Carousel>
 			</div>
 			<div>
-				<h2 className="font-bold text-2xl md:text-4xl mt-2 md:mt-9 lg:mt-14 ">
+				<h2 className="font-extrabold text-2xl md:text-4xl mt-2 md:mt-9 lg:mt-14 text-blue-700 dark:text-customGreen">
 					🧭 {trip?.userSelection?.location?.label} 🧭
 				</h2>
 				<div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-sm md:text-sm lg:text-base items-center md:flex-row gap-3 lg:gap-5 mt-5 md:mt-9 lg:mt-12 text-center">
-					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
+					<h2 className="p-2 px-3 bg-blue-700 dark:bg-customGreen rounded-full dark:text-slate-800 text-white font-semibold">
 						📅 {trip?.userSelection?.noOfDays} Day 📅
 					</h2>
-					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
+					<h2 className="p-2 px-3 bg-blue-700 dark:bg-customGreen rounded-full dark:text-slate-800 text-white font-semibold">
 						💰 {trip?.userSelection?.budget} budget 💰
 					</h2>
-					<h2 className="p-1 px-3 bg-gray-200 rounded-full text-gray-900">
+					<h2 className="p-2 px-3 bg-blue-700 dark:bg-customGreen rounded-full dark:text-slate-800 text-white font-semibold">
 						👥 Traveler: {trip?.userSelection?.people} 👥
 					</h2>
 				</div>

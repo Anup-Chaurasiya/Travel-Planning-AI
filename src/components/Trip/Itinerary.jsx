@@ -6,13 +6,13 @@ export const Itinerary = ({ trip }) => {
 	return (
 		<Card className="border-y-2 p-5">
 			<div className="mt-10">
-				<h1 className="font-bold text-lg md:text-2xl mt-5">
+				<h1 className="font-bold text-lg md:text-2xl mt-5 text-blue-800 dark:text-customGreen">
 					🏖️ Trip Itinerary 🏖️
 				</h1>
 				<div className="text-justify ">
 					{trip?.tripData?.itinerary?.map((day, dayIndex) => (
 						<div key={dayIndex} className="text-sm lg:text-base">
-							<h2 className="font-semibold text-md m-4">
+							<h2 className="font-semibold text-md m-4 text-blue-800 dark:text-customGreen">
 								🗓️ {day.Day}
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-6 xl:gap-5">
@@ -20,7 +20,7 @@ export const Itinerary = ({ trip }) => {
 									(activity, activityIndex) => (
 										<div
 											key={activityIndex}
-											className="mt-2 text-sm lg:text-base hover:scale-105 transition-all mb-2 border-[1px] md:border-2 border-customGreen dark:border-customBlue rounded-lg px-2 cursor-pointer"
+											className="mt-2 text-sm lg:text-base hover:scale-105 transition-all mb-2 border-[1px] md:border-2 dark:border-customGreen border-blue-700 rounded-lg px-2 cursor-pointer"
 										>
 											<Link
 												to={
