@@ -25,7 +25,7 @@ export const MyTrips = () => {
 				const querySnapshot = await getDocs(q);
 				const trips = [];
 				querySnapshot.forEach((doc) => {
-					console.log(doc.id, " => ", doc.data());
+					//console.log(doc.id, " => ", doc.data());
 					trips.push(doc.data()); // Accumulate trips
 				});
 				setUserTrips(trips); // Set all trips at once
@@ -40,7 +40,7 @@ export const MyTrips = () => {
 	return (
 		<div className="container font-serif ">
 			<Card className="mt-5 border-x-2 p-2">
-				<h1 className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-6 md:mt-10 lg:mt-10">
+				<h1 className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-6 md:mt-10 lg:mt-10 mb-5 dark:text-customGreen text-blue-700">
 					My Trips 🏕️🌴
 				</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 text-justify gap-3 md:gap-6 xl:gap-6">

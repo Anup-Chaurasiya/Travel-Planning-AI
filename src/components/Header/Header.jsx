@@ -29,7 +29,7 @@ export default function Header() {
 	}, []);
 
 	return (
-		<header className="w-full border-b-2 font-serif sm:text-sm md:text-xl border-neutral-600 shadow top-0 z-50">
+		<header className="w-full border-b-2 font-serif sm:text-sm md:text-xl sticky bg-background border-neutral-600 shadow top-0 z-10">
 			<nav className="container px-2 lg:px-6 py-2">
 				<div className="flex flex-wrap justify-between items-center mx-auto">
 					<Link to="/" className="flex items-center">
@@ -42,7 +42,7 @@ export default function Header() {
 
 					<button
 						onClick={toggleMenu}
-						className="lg:hidden text-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
+						className="lg:hidden p-2 rounded-md focus:outline focus:ring-2 focus:ring-offset-1 focus:ring-blue-700 dark:focus:ring-customGreen dark:text-customGreen font-bold text-blue-700"
 					>
 						<svg
 							className="h-6 w-6"
@@ -60,7 +60,7 @@ export default function Header() {
 					<div
 						className={`${
 							isOpen ? "block" : "hidden"
-						} w-full lg:flex lg:w-auto lg:items-center`}
+						} w-full lg:flex lg:w-auto lg:items-center `}
 					>
 						<ul className="flex flex-col mt-1 font-medium lg:flex-row lg:space-x-8 lg:mt-0 lg:ml-auto text-right leading-loose">
 							{user ? (
@@ -71,8 +71,8 @@ export default function Header() {
 											className={({ isActive }) =>
 												`block pr-2 pl-2 duration-200 ${
 													isActive
-														? "text-customGreen font-bold dark:text-customBlue"
-														: "text-gray-500"
+														? "dark:text-customGreen font-bold text-blue-700"
+														: "text-gray-400"
 												}`
 											}
 										>
@@ -85,8 +85,8 @@ export default function Header() {
 											className={({ isActive }) =>
 												`block pr-2 pl-2 duration-200 ${
 													isActive
-														? "text-customGreen font-bold dark:text-customBlue"
-														: "text-gray-500"
+														? "dark:text-customGreen font-bold text-blue-700"
+														: "text-gray-400"
 												}`
 											}
 										>
@@ -110,7 +110,7 @@ export default function Header() {
 												)}
 											</PopoverTrigger>
 											<PopoverContent
-												className="w-17"
+												className="w-17 text-red-600 font-semibold"
 												data-side="bottom"
 												side={
 													isSmallScreen
@@ -133,7 +133,7 @@ export default function Header() {
 									</li>
 								</>
 							) : null}
-							<li className="block -mt-1.5 -pr-1 duration-200">
+							<li className="block mt-1 -pr-1 duration-200">
 								<ModeToggle />
 							</li>
 						</ul>
